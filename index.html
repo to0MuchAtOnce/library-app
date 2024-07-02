@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library App</title>
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon" />
     <link rel="stylesheet" href="style.css" />
     <script src="index.js" defer></script>
   </head>
@@ -21,5 +22,33 @@
       </thead>
       <tbody id="tableBody"></tbody>
     </table>
+    <form action="#" method="get" id="form">
+      <div>
+        <label for="titleField">Title</label>
+        <input type="text" id="titleField" />
+      </div>
+      <div>
+        <label for="authorField" class="formLabel"> Author:</label>
+        <input type="text" id="authorField" />
+      </div>
+      <div>
+        <label for="pagesField" class="formLabel"> Number of pages:</label>
+        <input type="text" id="pagesField" />
+      </div>
+      <fieldset>
+        <div>
+          <label for="yes">Yes</label>
+          <input type="radio" name="readStatus" id="yes" value="Yes" required />
+        </div>
+        <div>
+          <label for="no">No</label>
+          <input type="radio" name="readStatus" id="no" value="No" required />
+        </div>
+      </fieldset>
+      <div>
+        <label for="button" id="btn"></label>
+        <input type="button" id="btn" class="btn" value="Add Book" />
+      </div>
+    </form>
   </body>
 </html>

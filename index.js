@@ -1,5 +1,16 @@
 const cards = document.querySelector('.cards');
 const table = document.getElementById('table');
+const btn = document.querySelector('.btn');
+
+const titleField = document.getElementById('titleField');
+const authorField = document.getElementById('authorField');
+const pagesField = document.getElementById('pagesField');
+const isRead = document.getElementById('yes');
+
+titleField.value = '';
+authorField.value = '';
+pagesField.value = '';
+isRead.value = '';
 
 const myLibrary = [];
 
@@ -11,36 +22,42 @@ function Book(title, author, numPages, isRead) {
   this.info = function () {
     return `${this.title}, ${this.author}, ${this.numPages}, ${this.isRead}`;
   };
+
+  console.log('info', this.info);
 }
 
-function addBookToLibrary() {
-  myLibrary.forEach((book) => {
-    let row = table.insertRow();
-    let title = row.insertCell(0);
-    let author = row.insertCell(1);
-    let numPages = row.insertCell(2);
-    let isRead = row.insertCell(3);
-    title.innerHTML = book.title;
-    author.innerHTML = book.author;
-    numPages.innerHTML = book.numPages;
-    isRead.innerHTML = book.isRead;
-  });
+function addBookToLibrary(title, author, numPages, isRead) {
+  let row = table.insertRow();
+  let titleCell = row.insertCell(0);
+  let authorCell = row.insertCell(1);
+  let numPagesCell = row.insertCell(2);
+  let isReadCell = row.insertCell(3);
+
+  titleCell.innerHTML = title;
+  authorCell.innerHTML = author;
+  numPagesCell.innerHTML = numPages;
+  isReadCell.innerHTML = isRead ? 'Yes' : 'No';
+
+  const book = new Book(title, author, numPages, isRead);
+  myLibrary.push(book);
 }
 
-const theHobbit = new Book(
-  'The Hobbit',
-  'By J.R.R. Tolkien',
-  '295',
-  'Not read'
-);
-myLibrary.push(theHobbit);
+btn.addEventListener('click', (e) => {
+  e.preventDefault();
+  addBookToLibrary(
+    titleField.value,
+    authorField.value,
+    pagesField.value,
+    isRead.checked
+  );
+  console.log('is Read: ', isRead.checked);
+});
 
-const trainspotting = new Book(
-  'Trainspotting',
-  'By Irvine Welsh',
-  '344',
-  'Read'
-);
-myLibrary.push(trainspotting);
+// const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295', 'Not read');
+// myLibrary.push(theHobbit);
 
-addBookToLibrary();
+// const trainspotting = new Book('Trainspotting', 'Irvine Welsh', '344', 'Read');
+// myLibrary.push(trainspotting);
+
+// const terrorist = new Book('Terrorist', 'John Updike', '320', 'Not read');
+// myLibrary.push(terrorist);
