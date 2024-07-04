@@ -9,7 +9,7 @@
     <script src="index.js" defer></script>
   </head>
   <body>
-    <h1>Library</h1>
+    <h1 class="heading-1">Bookr</h1>
     <main class="cards"></main>
     <table id="table">
       <thead>
@@ -18,37 +18,67 @@
           <th>Author</th>
           <th>Pages</th>
           <th>read</th>
+          <th>Remove</th>
         </tr>
       </thead>
       <tbody id="tableBody"></tbody>
     </table>
-    <form action="#" method="get" id="form">
-      <div>
-        <label for="titleField">Title</label>
-        <input type="text" id="titleField" />
-      </div>
-      <div>
-        <label for="authorField" class="formLabel"> Author:</label>
-        <input type="text" id="authorField" />
-      </div>
-      <div>
-        <label for="pagesField" class="formLabel"> Number of pages:</label>
-        <input type="text" id="pagesField" />
-      </div>
-      <fieldset>
+    <div class="modal">
+      <form action="#" method="get" id="form">
         <div>
-          <label for="yes">Yes</label>
-          <input type="radio" name="readStatus" id="yes" value="Yes" required />
+          <label for="titleField">Title</label>
+          <input type="text" id="titleField" />
         </div>
         <div>
-          <label for="no">No</label>
-          <input type="radio" name="readStatus" id="no" value="No" required />
+          <label for="authorField" class="formLabel"> Author:</label>
+          <input type="text" id="authorField" />
         </div>
-      </fieldset>
-      <div>
-        <label for="button" id="btn"></label>
-        <input type="button" id="btn" class="btn" value="Add Book" />
-      </div>
-    </form>
+        <div>
+          <label for="pagesField" class="formLabel"> Number of pages:</label>
+          <input type="number" id="pagesField" />
+        </div>
+        <fieldset>
+          <div>
+            <label for="yes">Yes</label>
+            <input
+              type="radio"
+              name="readStatus"
+              id="yes"
+              value="Yes"
+              required
+            />
+          </div>
+          <div>
+            <label for="no">No</label>
+            <input type="radio" name="readStatus" id="no" value="No" required />
+          </div>
+        </fieldset>
+        <div class="form-btns">
+          <div>
+            <label for="button" id="cancel"></label>
+            <input
+              name="cancel"
+              type="button"
+              id="cancel"
+              class="cancelBtn btn"
+              value="Cancel"
+            />
+          </div>
+          <div>
+            <label for="button" id="add"></label>
+            <input
+              name="add"
+              type="button"
+              id="btn"
+              class="addBtn btn"
+              value="Add"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="btnContainer">
+      <button class="add-new-book btn" id="addNewBook">Add New Book</button>
+    </div>
   </body>
 </html>

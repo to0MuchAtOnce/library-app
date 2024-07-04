@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -7,19 +9,23 @@
 :root {
   --light-bg: #f1f1f1;
   --dark-bg: rgb(53, 55, 66);
+  --dark-bg-even: rgb(92, 94, 101);
+  --form-bg: #4a4e58;
   --light-text: #fff;
   --dark-text: #000;
 }
 
 body {
-  background-color: var(--light-bg);
-  color: var(--dark-text);
+  background-color: var(--dark-bg);
+  color: var(--light-text);
+  font-family: 'Open Sans', sans-serif, 'Courier New', Courier, monospace;
   padding: 1em;
   margin: 0 auto;
   max-width: 880px;
 }
 
-h1 {
+.heading-1 {
+  text-align: center;
   padding-bottom: 0.7em;
 }
 
@@ -32,7 +38,7 @@ h1 {
 
 th {
   padding: 0.5em;
-  background-color: var(--light-bg);
+  background-color: var(--dark-bg);
 }
 
 td {
@@ -41,17 +47,47 @@ td {
 }
 
 tr:nth-child(odd) {
-  background-color: var(--light-bg);
+  background-color: var(--dark-bg);
 }
 
 tr:nth-child(even) {
-  background-color: var(--light-bg);
+  background-color: var(--dark-bg-even);
 }
 
 #form {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.form-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.modal {
+  display: none;
+  background-color: var(--form-bg);
+  border-radius: 10px;
+  padding: 1em;
+  margin: 1rem 0;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.btn {
+  background-color: var(--light-bg);
+  border: 0;
+  border-radius: 6px;
+  padding: 0.5em 1em;
+  cursor: pointer;
+}
+
+.btn:active {
+  transform: scale(0.98);
 }
 
 fieldset {
