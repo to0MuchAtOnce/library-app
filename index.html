@@ -38,32 +38,31 @@
           <input type="number" id="pagesField" />
         </div>
         <fieldset>
+          <span>I've read it:</span>
           <div>
             <label for="yes">Yes</label>
             <input
               type="radio"
               name="readStatus"
               id="yes"
-              value="Yes"
+              value=""
+              checked="false"
               required
             />
           </div>
           <div>
             <label for="no">No</label>
-            <input type="radio" name="readStatus" id="no" value="No" required />
+            <input
+              type="radio"
+              name="readStatus"
+              id="no"
+              value=""
+              checked="false"
+              required
+            />
           </div>
         </fieldset>
         <div class="form-btns">
-          <div>
-            <label for="button" id="cancel"></label>
-            <input
-              name="cancel"
-              type="button"
-              id="cancel"
-              class="cancelBtn btn"
-              value="Cancel"
-            />
-          </div>
           <div>
             <label for="button" id="add"></label>
             <input
@@ -72,6 +71,16 @@
               id="btn"
               class="addBtn btn"
               value="Add"
+            />
+          </div>
+          <div>
+            <label for="button" id="cancel"></label>
+            <input
+              name="cancel"
+              type="button"
+              id="cancel"
+              class="cancelBtn btn"
+              value="Cancel"
             />
           </div>
         </div>

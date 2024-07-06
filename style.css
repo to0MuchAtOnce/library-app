@@ -13,6 +13,7 @@
   --form-bg: #4a4e58;
   --light-text: #fff;
   --dark-text: #000;
+  --delete-btn: #e57575;
 }
 
 body {
@@ -84,6 +85,11 @@ tr:nth-child(even) {
   border-radius: 6px;
   padding: 0.5em 1em;
   cursor: pointer;
+}
+
+.delete-btn {
+  background-color: var(--delete-btn);
+  color: var(--light-text);
 }
 
 .btn:active {

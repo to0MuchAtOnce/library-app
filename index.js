@@ -42,10 +42,10 @@ function renderLibrary() {
     <td>${book.numPages}</td>
     <td>${book.readStatus}</td>
     <td><button
-      class="delete"
+      class="delete btn delete-btn"
       id="delete"
       onclick="deleteBook(${index})"
-    >Delete Book</button></td>`;
+    >Delete</button></td>`;
     table.appendChild(bookRow);
   });
 }
@@ -55,9 +55,22 @@ addBtn.addEventListener('click', function (e) {
   const title = titleField.value;
   const author = authorField.value;
   const numPages = pagesField.value;
-  const readStatus = document.getElementById('yes').checked ? 'Yes' : 'No';
+  let readStatus;
+  if (document.getElementById('yes').checked) {
+    readStatus = 'Yes';
+  } else if (document.getElementById('no').checked) {
+    readStatus = 'No';
+  } else {
+    readStatus = 'N/A';
+  }
 
   const newBook = new Book(title, author, numPages, readStatus);
+
+  titleField.value = '';
+  authorField.value = '';
+  pagesField.value = '';
+  document.getElementById('yes').checked = false;
+  document.getElementById('no').checked = false;
 
   addBookToLibrary(newBook);
 });
@@ -66,6 +79,11 @@ function deleteBook(index) {
   myLibrary.splice(index, 1);
   renderLibrary();
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+  document.getElementById('yes').checked = false;
+  document.getElementById('no').checked = false;
+});
 
 addNewBook.addEventListener('click', () => {
   modal.style.display = 'block';
