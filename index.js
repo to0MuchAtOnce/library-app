@@ -10,6 +10,8 @@ const authorField = document.getElementById('authorField');
 const pagesField = document.getElementById('pagesField');
 const form = document.getElementById('form');
 
+let isEditing = false;
+
 titleField.value = '';
 authorField.value = '';
 pagesField.value = '';
@@ -22,7 +24,7 @@ function Book(title, author, numPages, readStatus) {
   this.numPages = numPages;
   this.readStatus = readStatus;
   this.info = function () {
-    return `${this.title}, ${this.author}, ${this.numPages}, ${this.isRead}`;
+    return `${this.title}, ${this.author}, ${this.numPages}, ${this.readStatus}`;
   };
 }
 
@@ -36,16 +38,42 @@ function renderLibrary() {
   table.innerHTML = '';
   myLibrary.forEach((book, index) => {
     const bookRow = document.createElement('tr');
+
+    // Create edit button
+    const editBtn = document.createElement('button');
+    editBtn.className = 'edit-btn';
+    editBtn.innerHTML = '<i class="ph ph-pencil-simple edit-icon"></i>';
+    editBtn.addEventListener('click', function () {
+      isEditing = true;
+      if ((isEditing = true)) {
+        console.log('Editing');
+      } else {
+        console.log('e');
+      }
+    });
+
+    // Create cells for book details
     bookRow.innerHTML = `
     <td>${book.title}</td>
     <td>${book.author}</td>
-    <td>${book.numPages}</td>
-    <td>${book.readStatus}</td>
-    <td><button
-      class="delete btn delete-btn"
-      id="delete"
-      onclick="deleteBook(${index})"
-    >Delete</button></td>`;
+    <td>${book.numPages}</td>`;
+
+    // Create read status cell
+    const readStatusCell = document.createElement('td');
+    readStatusCell.textContent = book.readStatus + ' ';
+    readStatusCell.appendChild(editBtn);
+    bookRow.appendChild(readStatusCell);
+
+    // Create delete button
+    const deleteBtnCell = document.createElement('td');
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = 'delete btn delete-btn';
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.setAttribute('onclick', `deleteBook(${index})`);
+    deleteBtnCell.appendChild(deleteBtn);
+    bookRow.appendChild(deleteBtnCell);
+
+    // Append row to table
     table.appendChild(bookRow);
   });
 }
@@ -55,36 +83,37 @@ addBtn.addEventListener('click', function (e) {
   const title = titleField.value;
   const author = authorField.value;
   const numPages = pagesField.value;
-  let readStatus;
-  if (document.getElementById('yes').checked) {
-    readStatus = 'Yes';
-  } else if (document.getElementById('no').checked) {
-    readStatus = 'No';
-  } else {
-    readStatus = 'N/A';
-  }
+
+  // Access the value of the selected option in the dropdown
+  const readStatus = document.getElementById('readStatus').value;
 
   const newBook = new Book(title, author, numPages, readStatus);
 
   titleField.value = '';
   authorField.value = '';
   pagesField.value = '';
-  document.getElementById('yes').checked = false;
-  document.getElementById('no').checked = false;
+  document.getElementById('readStatus').selectedindex = 0; // Reset select field to its first option
 
   addBookToLibrary(newBook);
+  modal.style.display = 'none';
+  addNewBook.style.display = 'block';
 });
 
+// Change the read status of a book
+function editReadStatus(editBtn) {
+  isEditing = true;
+  console.log(isEditing);
+  if (editBtn) {
+    console.log('Hello');
+  }
+}
+// Delete book from library
 function deleteBook(index) {
   myLibrary.splice(index, 1);
   renderLibrary();
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  document.getElementById('yes').checked = false;
-  document.getElementById('no').checked = false;
-});
-
+// Add new book
 addNewBook.addEventListener('click', () => {
   modal.style.display = 'block';
   if ((modal.style.display = 'block')) {
@@ -92,6 +121,7 @@ addNewBook.addEventListener('click', () => {
   }
 });
 
+// Cancel adding new book
 cancelBtn.addEventListener('click', () => {
   modal.style.display = 'none';
   if ((modal.style.display = 'none')) {

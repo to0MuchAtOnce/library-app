@@ -6,6 +6,7 @@
     <title>Library App</title>
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon" />
     <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <script src="index.js" defer></script>
   </head>
   <body>
@@ -39,7 +40,15 @@
         </div>
         <fieldset>
           <span>I've read it:</span>
-          <div>
+
+          <!-- Select List -->
+          <select name="readStatus" id="readStatus">
+            <option id="yes" value="yes">Yes</option>
+            <option id="no" value="no">No</option>
+          </select>
+
+          <!-- Radio buttons -->
+          <!-- <div>
             <label for="yes">Yes</label>
             <input
               type="radio"
@@ -60,7 +69,7 @@
               checked="false"
               required
             />
-          </div>
+          </div> -->
         </fieldset>
         <div class="form-btns">
           <div>
