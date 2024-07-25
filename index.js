@@ -56,7 +56,6 @@ function renderLibrary() {
         // Generate a unique ID for the cloned select element
         const uniqueId = 'readStatus-' + index;
         clonedSelect.id = uniqueId;
-        console.log(clonedSelect.id);
 
         // Set the cloned select value to the current read status
         clonedSelect.value = book.readStatus;
@@ -64,19 +63,16 @@ function renderLibrary() {
         // Replace the text content of the read status cell with the cloned select element
         readStatusCell.textContent = '';
         readStatusCell.appendChild(clonedSelect);
-        console.log('Editing');
 
         // Event listener to handle the selection change
         clonedSelect.addEventListener('change', function () {
           book.readStatus = clonedSelect.value;
           readStatusCell.textContent = book.readStatus + ' ';
           readStatusCell.appendChild(editBtn);
-          console.log(book.readStatus);
           isEditing = false;
         });
       } else {
-        // clonedSelect.display = 'none';
-        console.log('Not editing');
+        isEditing = false;
       }
     });
 
@@ -127,14 +123,6 @@ addBtn.addEventListener('click', function (e) {
   addNewBook.style.display = 'block';
 });
 
-// Change the read status of a book
-function editReadStatus(editBtn) {
-  isEditing = true;
-  console.log(isEditing);
-  if (editBtn) {
-    console.log('Hello');
-  }
-}
 // Delete book from library
 function deleteBook(index) {
   myLibrary.splice(index, 1);
