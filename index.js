@@ -28,6 +28,7 @@ function Book(title, author, numPages, readStatus) {
   };
 }
 
+// Push book to library array
 function addBookToLibrary(newBook) {
   myLibrary.push(newBook);
   renderLibrary();
@@ -45,10 +46,37 @@ function renderLibrary() {
     editBtn.innerHTML = '<i class="ph ph-pencil-simple edit-icon"></i>';
     editBtn.addEventListener('click', function () {
       isEditing = true;
-      if ((isEditing = true)) {
+      if (isEditing) {
+        const originalSelect = document.getElementById('readStatus');
+        const clonedSelect = originalSelect.cloneNode(true);
+
+        // Remove the ID from the cloned select element to avoid duplicate IDs
+        clonedSelect.removeAttribute('id');
+
+        // Generate a unique ID for the cloned select element
+        const uniqueId = 'readStatus-' + index;
+        clonedSelect.id = uniqueId;
+        console.log(clonedSelect.id);
+
+        // Set the cloned select value to the current read status
+        clonedSelect.value = book.readStatus;
+
+        // Replace the text content of the read status cell with the cloned select element
+        readStatusCell.textContent = '';
+        readStatusCell.appendChild(clonedSelect);
         console.log('Editing');
+
+        // Event listener to handle the selection change
+        clonedSelect.addEventListener('change', function () {
+          book.readStatus = clonedSelect.value;
+          readStatusCell.textContent = book.readStatus + ' ';
+          readStatusCell.appendChild(editBtn);
+          console.log(book.readStatus);
+          isEditing = false;
+        });
       } else {
-        console.log('e');
+        // clonedSelect.display = 'none';
+        console.log('Not editing');
       }
     });
 
@@ -112,6 +140,8 @@ function deleteBook(index) {
   myLibrary.splice(index, 1);
   renderLibrary();
 }
+
+// Event Listeners
 
 // Add new book
 addNewBook.addEventListener('click', () => {

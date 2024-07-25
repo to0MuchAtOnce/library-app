@@ -7,6 +7,7 @@
 }
 
 :root {
+  --heading-color: #63aef9;
   --light-bg: #f1f1f1;
   --dark-bg: rgb(53, 55, 66);
   --dark-bg-even: rgb(92, 94, 101);
@@ -28,6 +29,10 @@ body {
 .heading-1 {
   text-align: center;
   padding-bottom: 0.7em;
+}
+
+.heading-color {
+  color: var(--heading-color);
 }
 
 #table {
